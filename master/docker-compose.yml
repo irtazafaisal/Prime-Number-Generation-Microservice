@@ -1,0 +1,34 @@
+version: '3'
+services:
+  master_api:
+    build: .
+    ports:
+      - "5000:5000"
+    networks:
+      - my-network
+    depends_on:
+      - api1
+      - api2
+      - api3
+
+  api1:
+    image: prime-app
+    command: sh -c "flask run -h localhost -p 8000"
+    networks:
+      - my-network
+
+  api2:
+    image: prime-app
+    command: sh -c "flask run -h localhost -p 8000"
+    networks:
+      - my-network
+
+  api3:
+    image: prime-app
+    command: sh -c "flask run -h localhost -p 8000"
+    networks:
+      - my-network
+
+networks:
+  my-network:
+    driver: bridge
